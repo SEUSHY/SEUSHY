@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>地府管理系统_登录</title>
+<link href="地府管理系统.css" rel="stylesheet" type="text/css">
+<link href="登录界面自用.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="outer_box">
+    <div class="filterImg"></div>
+    <div class="login_box">
+      <h1><img src="./VCG211300614420.jpg" alt=""></h1>
+      <p><input id="key" type="text" value="账号"></p>
+      <p><input id="value" type="text" value="登录密码"></p>
+      <p class="logIn_btn" onClick="OClick()">登录</p>
+    </div>
+  </div>
+<script>
+function OClick()
+{
+	if(document.getElementById("key").value=="admin" & document.getElementById("value").value=="password")
+	   {
+	   		window.alert("登录成功");
+		   	window.open("./地府管理系统_工作站.html")
+	   }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>地府管理系统_生死簿_用户管理</title>
+<link href="地府管理系统.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+<p><input id="name01" type="text" value="姓名"></p>
+<p><input id="sex01" type="text" value="性别"></p>	
+<p><input id="type01" type="text" value="类型"></p>	
+<p><input id="describe01" type="text" value="描述"></p>
+<p><input id="Delete01" type="text" value="删除"></p>
+<button onClick="InsertTable()">tianjia</button>
+<button onClick="DeleteTable()">delete</button>
+
+
+<script>
+	var dataBase = openDatabase("MyDataBase01", "1.0", "HR", 1024 * 1024, function () { });if (!dataBase) {alert("数据库创建失败！");} else {alert("数据库创建成功！");}
+</script>
+	
+	
+<script>
+dataBase.transaction( function(tx) { 
+tx.executeSql("create table if not exists FirstList (name TEXT, sex TEXT, type TEXT, describe TEXT)", 
+[], 
+function(tx,result){ alert("创建FirstList表成功"); }, 
+function(tx, error){ alert("创建FirstList表失败"); 
+});
+});
+</script>
+	
+	
+<script>
+function InsertTable() {
+var a = document.getElementById("name01").value;
+var b = document.getElementById("sex01").value;
+var c = document.getElementById("type01").value;
+var d = document.getElementById("describe01").value;
+dataBase.transaction( function (tx) {
+tx.executeSql("insert into FirstList (name, sex, type, describe) values(?, ?, ?, ?)",
+[a,b,c,d],
+function (tx,result) { alert("添加数据成功"); },
+function (tx, error) { alert("添加数据失败"); 
+} );
+});	
+}
+</script>
+	
+	
+<script>
+function DeleteTable() {
+var id = document.getElementById("Delete01").value;
+dataBase.transaction(function (tx) {
+tx.executeSql("delete from FirstList where name= ?",
+[id],
+function (tx, result) {alert("删除成功");},
+function (tx, error) {alert("删除失败");
+});
+});
+}
+</script>
+</body>
+</html>
